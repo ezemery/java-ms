@@ -1,7 +1,7 @@
 package com.ezeservice.customer;
 
-//import com.ezeservices.clients.fraud.FraudCheckResponse;
-//import com.ezeservices.clients.fraud.FraudClient;
+import com.ezeservices.clients.fraud.FraudCheckResponse;
+import com.ezeservices.clients.fraud.FraudClient;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -12,7 +12,7 @@ public class CustomerService {
 
     private final CustomerRepository customerRepository;
     private final RestTemplate restTemplate;
-//    private final FraudClient fraudClient;
+    private final FraudClient fraudClient;
 
     public void registerCustomer(CustomerRegistrationRequest request) {
         Customer customer = Customer.builder()
@@ -24,11 +24,10 @@ public class CustomerService {
         // todo: check if email valid
         // todo: check if email not taken
         //todo: check if customer is fradulent
-//        FraudCheckResponse fraudCheckResponse = fraudClient.isFraudster(customer.getId());
-        
+        FraudCheckResponse fraudCheckResponse = fraudClient.isFraudster(customer.getId());
 
-//        if(fraudCheckResponse.isFraudster()){
-//            throw new IllegalStateException("is fraudster");
-//        }
+        if(fraudCheckResponse.isFraudster()){
+            throw new IllegalStateException("is fraudster");
+        }
     }
 }

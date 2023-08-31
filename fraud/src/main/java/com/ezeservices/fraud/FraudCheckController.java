@@ -1,6 +1,6 @@
 package com.ezeservices.fraud;
 
-//import com.ezeservices.clients.fraud.FraudCheckResponse;
+import com.ezeservices.clients.fraud.FraudCheckResponse;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 public class FraudCheckController {
 
-//    private final FraudCheckService fraudCheckService;
+    private final FraudCheckService fraudCheckService;
 
-//    @GetMapping(path = "{customerId}")
-//    public FraudCheckResponse isFraudster(@PathVariable("customerId") Integer customerId){
-//        boolean isFraudulentCustomer = fraudCheckService.isFraudulent(customerId);
-//        log.info("fraud check request for customer {}", customerId);
-//        return new FraudCheckResponse(isFraudulentCustomer);
-//
-//    }
+    @GetMapping(path = "{customerId}")
+    public FraudCheckResponse isFraudster(@PathVariable("customerId") Integer customerId){
+        boolean isFraudulentCustomer = fraudCheckService.isFraudulent(customerId);
+        log.info("fraud check request for customer {}", customerId);
+        return new FraudCheckResponse(isFraudulentCustomer);
+
+    }
 }
